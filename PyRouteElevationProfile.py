@@ -4,6 +4,15 @@ from geopy.distance import geodesic
 import matplotlib.pyplot as plt
 import argparse
 
+# Return x value
+def getX(o):
+    return o['x']
+
+# Return elevation value
+def getElevation(o):
+    return o['elevation']
+
+# Define aruguments that can be passed to the function
 argParser = argparse.ArgumentParser()
 argParser.add_argument("-slat", "--startlatitude",
                        help="Startpoint latitude of point")
@@ -66,19 +75,6 @@ print("Corresponding elevation values")
 for i in range(0, len(elevations)):
     print(round(elevations[i]["elevation"]), end=" ")
 print()
-
-# Return x value
-
-
-def getX(o):
-    return o['x']
-
-# Return elevation value
-
-
-def getElevation(o):
-    return o['elevation']
-
 
 # show the plot
 if shouldPlot == '1':
