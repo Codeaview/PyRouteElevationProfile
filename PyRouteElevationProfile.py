@@ -44,7 +44,6 @@ route_request = {'coordinates': startendpoints,
                  }
 route = client.directions(**route_request)
 
-# pprint(route)
 coordinates = route["features"][0]["geometry"]["coordinates"]
 print("Number of received coordinates: " + str(len(coordinates)))
 totalLength = route["features"][0]["properties"]["summary"]["distance"]
@@ -53,7 +52,7 @@ metersPerCoordinate = totalLength / len(coordinates)
 print("Coordinates are placed every " + str(metersPerCoordinate) + " m")
 print()
 
-# Calculate the distances from the first point
+# Calculate the distances from the first point (from the start of the route)
 distance = 0
 elevations = []
 # Add first elevation
@@ -66,7 +65,6 @@ for index in range(1, len(coordinates)):
     deltaDistance = geodesic(previousPointLatLng, currentPointLatLng).meters
     distance += deltaDistance
     elevations.append({'x': distance, 'elevation': coordinates[index][2]})
-# pprint(elevations)
 print("X values")
 for i in range(0, len(elevations)):
     print(round(elevations[i]["x"], 0), end=" ")
@@ -88,3 +86,4 @@ if shouldPlot == '1':
     plt.title('Road profile')
 
     plt.show()
+
